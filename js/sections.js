@@ -353,6 +353,3 @@ function display(data) {
     plot.update(index, progress);
   });
 }
-
-// load data and display
-d3.tsv("data/words.tsv", display);
