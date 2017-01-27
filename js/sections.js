@@ -353,3 +353,6 @@ function display(data) {
     plot.update(index, progress);
   });
 }
+
+// load data and display
+d3.tsv("", display);
