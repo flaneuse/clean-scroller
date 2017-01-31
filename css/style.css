@@ -28,6 +28,10 @@
   padding-bottom: 200px;
 }
 
+#breadcrumbs {
+  cursor: pointer;
+}
+
 .step {
   margin-bottom: 200px;
   font-family: "TiemposTextWeb-Regular","Georgia";

@@ -107,13 +107,13 @@ dx_bc = width + margin.left + margin.right;
 dy_bc = (height + margin.top + margin.bottom)/2 - (breadcrumbs.length/2) * spacing_bc;
 svg = d3.select("svg");
 
-svg.append("g").attr("id", "bread")
+svg.append("g").attr("id", "breadcrumbs")
   // .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
   .attr("transform", "translate(" + dx_bc + "," + dy_bc + ")");
 
 
 
-br = svg.selectAll("#bread");
+br = svg.selectAll("#breadcrumbs");
 
   br.selectAll("circle")
      .data(breadcrumbs)
@@ -495,7 +495,7 @@ function randomWord(words) {
  */
 function display(data) {
   // Clear out any previously drawn graphics.
-var $vis = $("#vis");
+  var $vis = $("#vis");
   $vis.empty();
 
   // create a new plot and
