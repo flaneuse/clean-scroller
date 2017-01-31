@@ -150,9 +150,14 @@ br = svg.selectAll("#bread");
      .style("fill", "")
      .style("fill-opacity", function(d) {return d * 0.5 + 0.1;});
 
-br.selectAll("circle").on("mouseover", function(d,i) {
+br.selectAll("circle").on("click", function(d,i) {
   selectedFrame = this.id;
-  console.log(selectedFrame);
+  console.log("clicked " + selectedFrame);
+
+  updateBreadcrumbs(selectedFrame);
+  activateFunctions[selectedFrame]();
+
+
 });
 
        setupVis(words);
@@ -189,6 +194,15 @@ br.selectAll("circle").on("mouseover", function(d,i) {
         .attr("fill", randomColor())
         .text("Baboyma is " + randomWord(words))
         .style("opacity", 1);
+
+        svg.append("text")
+          .attr("class", "pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   };
 
   /**
@@ -251,11 +265,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-    svg.selectAll("text")
+    svg.selectAll(".title")
         .transition()
         .duration(600)
         .attr("fill", randomColor())
         .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show2() {
@@ -264,11 +287,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-    svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show3() {
@@ -277,11 +309,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-      svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
 
@@ -291,11 +332,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-      svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show5() {
@@ -303,6 +353,21 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .transition()
       .duration(600)
       .attr("fill", randomColor());
+
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show6() {
@@ -311,11 +376,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-      svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show7() {
@@ -324,11 +398,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-      svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show8() {
@@ -337,11 +420,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-      svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
   function show9() {
@@ -350,11 +442,20 @@ br.selectAll("circle").on("mouseover", function(d,i) {
       .duration(600)
       .attr("fill", randomColor());
 
-      svg.selectAll("text")
-          .transition()
-          .duration(600)
-          .attr("fill", randomColor())
-          .text("Baboyma is " + randomWord(words));
+    svg.selectAll(".title")
+        .transition()
+        .duration(600)
+        .attr("fill", randomColor())
+        .text("Baboyma is " + randomWord(words));
+
+
+    svg.selectAll(".pgNum")
+          .attr("x", width)
+          .attr("y", height)
+          .style("font-size", 10)
+          .attr("fill", "white")
+          .text(activeIndex)
+          .style("opacity", 1);
   }
 
 function randomColor() {
@@ -368,8 +469,6 @@ function randomColor() {
 }
 
 function updateBreadcrumbs(idx) {
-  console.log("updating")
-
   br.selectAll("circle")
      .style("fill-opacity", function(d,i) {return i==idx ? 0.6:0.1;});
 }
