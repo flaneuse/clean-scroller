@@ -15,27 +15,28 @@ var scrollVis = function() {
 // var graphic_data;
 var graphic_aspect_width = 4;
 var graphic_aspect_height = 3;
+var padding_right = 10;
 // var mobile_threshold = 500;
-var pctVis = 2/3; // percent of #graphic occupied by #vis.
+
 
 // window function to get the size of the outermost parent
 var graphic = d3.select("#graphic");
 
 var graphicSize = graphic.node().getBoundingClientRect();
+var sidebarSize = d3.select("#sections").node().getBoundingClientRect();
 
-console.log("d3: ")
-console.log(graphicSize.width*pctVis)
-console.log("jQ: ")
-// console.log($graphic.width()*(2/3))
-
+w = graphicSize.width - sidebarSize.width - padding_right;
   // constants to define the size
   // and margins of the vis area, based on the outer vars.
-var margin = { top: 10, right: 15, bottom: 25, left: 35 };
-// var width = $graphic.width()* pctVis - margin.left - margin.right;
-var width = graphicSize.width * pctVis - margin.left - margin.right;
+var margin = { top: 10, right: 25, bottom: 25, left: 35 };
+var width = w - margin.left - margin.right;
 var height = Math.ceil((width * graphic_aspect_height) / graphic_aspect_width) - margin.top - margin.bottom;
 
-var numSlides = 6;
+console.log(width)
+console.log(height)
+
+var numSlides = 9;
+var radius_bc = 7; // radius of breadcrumbs
 
 // clear out existing graphics
 // $graphic.empty();
@@ -91,48 +92,24 @@ var numSlides = 6;
        svg.attr("width", width + margin.left + margin.right);
        svg.attr("height", height + margin.top + margin.bottom);
 
-
        // this group element will be used to contain all
        // other elements.
        g = svg.select("g")
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // BREADCRUMBS
-         // create svg and give it a width and height
-//          breadcrumbs = d3.select("#breadcrumbs").selectAll("svg").data([numSlides]);
-//          breadcrumbs.enter().append("svg").append("g");
-//
-//          breadcrumbs.attr("width", margin.left + margin.right);
-//          breadcrumbs.attr("height", height + margin.top + margin.bottom);
-//
-//
-//          // this group element will be used to contain all
-//          // other elements.
-//          gBr = breadcrumbs.select("g")
-//          .attr("width", 50)
-//          .attr("height", 40)
-//            .attr("transform", "translate(" + graphicSize.width + "," + margin.top + ")").selectAll("circle")
-// .data(numSlides)
-// .enter().append()
-// .attr("id", "breadcrumb")
-// .attr("cx", 10)
-// .attr("cy", 10)
-// .attr("r", 10);
 
 var breadcrumbs = Array(numSlides).fill(0)
 breadcrumbs[0] = 1
-bcSpacing = 25;
+spacing_bc = 25; // spacing between breadcrumbs, in pixels.
 
-var graphic = d3.select("svg");
-
-var graphicSize = graphic.node().getBoundingClientRect();
-
-h = graphicSize.height/2 + (breadcrumbs.length/2) * 25;
+dx_bc = width + margin.left + margin.right;
+dy_bc = (height + margin.top + margin.bottom)/2 - (breadcrumbs.length/2) * spacing_bc;
 svg = d3.select("svg");
 
 svg.append("g").attr("id", "bread")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-  .attr("transform", "translate(" + width/3 + "," + h + ")");
+  // .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  .attr("transform", "translate(" + dx_bc + "," + dy_bc + ")");
 
 
 
@@ -142,9 +119,9 @@ br = svg.selectAll("#bread");
      .data(breadcrumbs)
      .enter().append("circle")
      .attr("id", function(d,i) {return i})
-     .attr("cy", function(d,i) {return i * bcSpacing;})
-     .attr("cx", 100)
-     .attr("r", 7)
+     .attr("cy", function(d,i) {return i * spacing_bc;})
+     .attr("cx", -radius_bc)
+     .attr("r",  radius_bc)
      .style("stroke-width", 0.25)
      .style("stroke", "#333")
      .style("fill", "")
@@ -152,7 +129,6 @@ br = svg.selectAll("#bread");
 
 br.selectAll("circle").on("click", function(d,i) {
   selectedFrame = this.id;
-  console.log("clicked " + selectedFrame);
 
   updateBreadcrumbs(selectedFrame);
   activateFunctions[selectedFrame]();

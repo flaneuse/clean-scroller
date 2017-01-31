@@ -1,6 +1,6 @@
 /*Width of main container*/
 .container {
-  max-width: 690px;
+  max-width: 1000px;
   padding-right: 15px; /* normal 15 px + 25 px for breadcrumbs.*/
 }
 
@@ -43,6 +43,7 @@
   margin-bottom: 2px;
   color: #262626;
   line-height: 1.2em;
+  padding-left: 0;
 }
 
 #extra-space {
@@ -55,6 +56,7 @@
   top: 60px;
   z-index: 1;
   margin-left: 0;
+  padding: 0;
   /*background-color: red;*/
 }
 
