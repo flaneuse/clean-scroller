@@ -1,19 +1,30 @@
-
+/*Width of main container*/
 .container {
-  width: 890px;
+  max-width: 690px;
+  padding-right: 15px; /* normal 15 px + 25 px for breadcrumbs.*/
 }
 
+/*Navbar on the right, for breadcrumbs*/
+.navbar-fixed-right {
+  position: fixed;
+}
+
+/*Row containing ALL the elements (sections, vis., etc.)*/
 #graphic {
+  /*border: 11px solid slateblue;*/
+  opacity: 50%;
+  background-color: #ffffdd;
   padding-top: 60px;
 }
 
-
+/*Sections with the scrolling text on the side*/
 #sections {
   position: relative;
   display: inline-block;
-  width: 250px;
   top: 0px;
   z-index: 90;
+  /*margin-left: 10px;*/
+  /*margin-right: 20px;*/
   padding-bottom: 200px;
 }
 
@@ -40,24 +51,17 @@
 
 #vis {
   display: inline-block;
-  position: fixed;
+  position: fixed; /* --> non-responsiveness, but needed to correctly be placed. */
   top: 60px;
   z-index: 1;
   margin-left: 0;
-  /* height: 600px; */
-  /* width: 600px; */
-  /* background-color: #ddd; */
+  /*background-color: red;*/
 }
 
 #vis .title {
-  font-size:120px;
   text-anchor: middle;
 }
 
-#vis .sub-title {
-  font-size:80px;
-  text-anchor: middle;
-}
 
 .axis path,
 .axis line {
@@ -65,16 +69,3 @@
   stroke: #666;
   shape-rendering: crispEdges;
 }
-
-.highlight {
-  fill: #008080;
-  font-weight: bold;
-}
-
-.cough-arrow {
-  stroke: #000;
-  stroke-width: 4px;
-
-}
-
-

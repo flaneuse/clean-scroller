@@ -4,13 +4,41 @@
  * all the code for the visualization
  * using reusable charts pattern:
  * http://bost.ocks.org/mike/chart/
+ * responsiveness code based on http://blog.apps.npr.org/2014/05/19/responsive-charts.html
  */
 var scrollVis = function() {
+
+// Define graphic aspect ratio.
+// Based on iPad w/ 2/3 of max width taken up by vis., 2/3 of max height taken up by vis.: 1024 x 768 --> perserve aspect ratio of iPad
+
+// var $graphic = $('#graphic');
+// var graphic_data;
+var graphic_aspect_width = 4;
+var graphic_aspect_height = 3;
+// var mobile_threshold = 500;
+var pctVis = 2/3; // percent of #graphic occupied by #vis.
+
+// window function to get the size of the outermost parent
+var graphic = d3.select("#graphic");
+
+var graphicSize = graphic.node().getBoundingClientRect();
+
+console.log("d3: ")
+console.log(graphicSize.width*pctVis)
+console.log("jQ: ")
+// console.log($graphic.width()*(2/3))
+
   // constants to define the size
-  // and margins of the vis area.
-  var width = 600;
-  var height = 520;
-  var margin = {top:0, left:20, bottom:40, right:10};
+  // and margins of the vis area, based on the outer vars.
+var margin = { top: 10, right: 15, bottom: 25, left: 35 };
+// var width = $graphic.width()* pctVis - margin.left - margin.right;
+var width = graphicSize.width * pctVis - margin.left - margin.right;
+var height = Math.ceil((width * graphic_aspect_height) / graphic_aspect_width) - margin.top - margin.bottom;
+
+var numSlides = 6;
+
+// clear out existing graphics
+// $graphic.empty();
 
   // constant
   words = ["awesome", "clever", "nice", "helpful", "useful", "a javacript master",
@@ -34,7 +62,8 @@ var scrollVis = function() {
   // for displaying visualizations
   var g = null;
 
-
+  // breadcrumbs
+  var breadcrumbs = null;
 
   // When scrolling to a new section
   // the activation function for that
@@ -68,6 +97,63 @@ var scrollVis = function() {
        g = svg.select("g")
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+// BREADCRUMBS
+         // create svg and give it a width and height
+//          breadcrumbs = d3.select("#breadcrumbs").selectAll("svg").data([numSlides]);
+//          breadcrumbs.enter().append("svg").append("g");
+//
+//          breadcrumbs.attr("width", margin.left + margin.right);
+//          breadcrumbs.attr("height", height + margin.top + margin.bottom);
+//
+//
+//          // this group element will be used to contain all
+//          // other elements.
+//          gBr = breadcrumbs.select("g")
+//          .attr("width", 50)
+//          .attr("height", 40)
+//            .attr("transform", "translate(" + graphicSize.width + "," + margin.top + ")").selectAll("circle")
+// .data(numSlides)
+// .enter().append()
+// .attr("id", "breadcrumb")
+// .attr("cx", 10)
+// .attr("cy", 10)
+// .attr("r", 10);
+
+var breadcrumbs = Array(numSlides).fill(0)
+breadcrumbs[0] = 1
+bcSpacing = 25;
+
+var graphic = d3.select("svg");
+
+var graphicSize = graphic.node().getBoundingClientRect();
+
+h = graphicSize.height/2 + (breadcrumbs.length/2) * 25;
+svg = d3.select("svg");
+
+svg.append("g").attr("id", "bread")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+  .attr("transform", "translate(" + width/3 + "," + h + ")");
+
+
+
+br = svg.selectAll("#bread");
+
+  br.selectAll("circle")
+     .data(breadcrumbs)
+     .enter().append("circle")
+     .attr("id", function(d,i) {return i})
+     .attr("cy", function(d,i) {return i * bcSpacing;})
+     .attr("cx", 100)
+     .attr("r", 7)
+     .style("stroke-width", 0.25)
+     .style("stroke", "#333")
+     .style("fill", "")
+     .style("fill-opacity", function(d) {return d * 0.5 + 0.1;});
+
+br.selectAll("circle").on("mouseover", function(d,i) {
+  selectedFrame = this.id;
+  console.log(selectedFrame);
+});
 
        setupVis(words);
 
@@ -281,6 +367,13 @@ function randomColor() {
   return(color);
 }
 
+function updateBreadcrumbs(idx) {
+  console.log("updating")
+
+  br.selectAll("circle")
+     .style("fill-opacity", function(d,i) {return i==idx ? 0.6:0.1;});
+}
+
 function randomWord(words) {
   var rand = words[Math.floor(Math.random() * words.length)];
   return(rand);
@@ -297,6 +390,7 @@ function randomWord(words) {
     var scrolledSections = d3.range(lastIndex + sign, activeIndex + sign, sign);
     scrolledSections.forEach(function(i) {
       activateFunctions[i]();
+      updateBreadcrumbs(i);
     });
     lastIndex = activeIndex;
   };
