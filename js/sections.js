@@ -494,6 +494,10 @@ function randomWord(words) {
  * @param data - loaded tsv data
  */
 function display(data) {
+  // Clear out any previously drawn graphics.
+var $vis = $("#vis");
+  $vis.empty();
+
   // create a new plot and
   // display it
   var plot = scrollVis();
@@ -522,6 +526,9 @@ function display(data) {
     plot.update(index, progress);
   });
 }
+
+
+window.addEventListener("resize", display)
 
 // load data and display
 d3.tsv("", display);
