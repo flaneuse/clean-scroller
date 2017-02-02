@@ -52,12 +52,21 @@ var scrollVis = function() {
     var spacing_bc = 25; // spacing between breadcrumbs, in pixels.
 
     // constant
-    var words = ["awesome", "clever", "nice", "helpful", 
+    /*var words = ["awesome", "clever", "nice", "helpful", 
         "useful", "a javacript master", "a nerd", "a coding ninja", 
         "an innovator" , "a relationship manager", "a thought leader",
         "a pioneer", "an enabler", "a co-creator", "a matrix-er", 
         "a disruptor", "bending the curve", "a yuge value add", 
-        "an accelerator", "a cross-pollinator", "a global solution"];
+        "an accelerator", "a cross-pollinator", "a global solution"];*/
+
+
+    // http://trumpinoneword.com/?all-words
+    var thisPerson = "Donald John Trump is ";
+
+    var words = ["racist", "Winner", "awesome", "pompous", "rich", "jerk",
+        "dick", "narcissist", "smart", "clown", "buffoon", "great", "twat", 
+        "leader", "joke", "stupid"];
+
 
     // Keep track of which visualization
     // we are on and which was the last
@@ -247,7 +256,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -268,7 +277,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
 
         svg.selectAll(".pgNum")
@@ -290,7 +299,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -311,7 +320,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -332,7 +341,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -353,7 +362,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -374,7 +383,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -395,7 +404,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -416,7 +425,7 @@ var scrollVis = function() {
         .transition()
         .duration(600)
         .attr("fill", randomColor())
-        .text("Baboyma is " + randomWord(words));
+        .text(thisPerson + randomWord(words));
 
         svg.selectAll(".pgNum")
         .attr("x", width)
@@ -446,7 +455,7 @@ var scrollVis = function() {
 
     function randomWord(words) {
         var rand = words[Math.floor(Math.random() * words.length)];
-        return(rand);
+        return(rand.toUpperCase());
     }
 
     /**
