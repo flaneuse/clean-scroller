@@ -22,7 +22,11 @@ function scroller() {
     // that is scrolled through
     var sectionPositions = [];
     var currentIndex = -1;
-    // y coordinate of
+
+    // Range when you need to update the section
+    var displayRange = 250;
+
+    // y coordinate of containier: $('#graphic')
     var containerStart = 0;
 
   /**
@@ -35,6 +39,7 @@ function scroller() {
    *  through by user.
    */
     function scroll(els) {
+        // $('.step') ==> These are the els
         sections = els;
 
         // when window is scrolled call
@@ -93,12 +98,27 @@ function scroller() {
    *
    */
     function position() {
+        // position of the container: $('#graphic')
         var pos = window.pageYOffset - 10 - containerStart;
-        
+
+        // BK => This is a nice way to find the figure out which section 
+        // is next but it trigger each time the current section has a piece out.
         var sectionIndex = d3.bisect(sectionPositions, pos);
 
-        sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+        //BK => What is this doing? 
+        //sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
+        $.each(sectionPositions, function(i, sPos) {
+            // get the real position of the sections
+            var nPos = sPos - pos;
+            // check if the section is within the right range
+            if ( nPos < displayRange ) {
+                sectionIndex = i;
+                return;
+            }
+        });
+
+        // this will trigger the change of section
         if (currentIndex !== sectionIndex) {
             dispatch.active(sectionIndex);
             currentIndex = sectionIndex;
@@ -123,6 +143,8 @@ function scroller() {
         if (arguments.length === 0) {
             return container;
         }
+
+        // $('#graphic') => This is the container 
         container = value;
 
         return scroll;

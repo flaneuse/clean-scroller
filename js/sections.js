@@ -23,11 +23,13 @@ var scrollVis = function() {
 
     var graphicSize = graphic.node()
         .getBoundingClientRect();
-    console.log("Graphic Size:", graphicSize);
+
+    //console.log("Graphic Size:", graphicSize);
 
     var sidebarSize = d3.select("#sections").node()
         .getBoundingClientRect();
-    console.log("Graphic Size:", sidebarSize);
+
+    //console.log("Side Size:", sidebarSize);
 
     w = graphicSize.width - sidebarSize.width - padding_right;
       // constants to define the size
@@ -453,7 +455,7 @@ var scrollVis = function() {
     * @param index - index of the activated section
     */
     chart.activate = function(index) {
-        console.log("Activate Section #",index);
+        console.log("Activate Section #", index);
         activeIndex = index;
 
         var sign = (activeIndex - lastIndex) < 0 ? -1 : 1;
